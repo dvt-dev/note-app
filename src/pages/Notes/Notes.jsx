@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { BsPlusLg } from "react-icons/bs";
+
 import "./Notes.css";
 import NoteItem from "../../components/NoteItem/NoteItem";
 

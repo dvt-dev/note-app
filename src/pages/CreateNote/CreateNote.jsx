@@ -1,18 +1,27 @@
 import React, { useRef, useState } from "react";
+import useCreateDate from "../../components/CustomHooks/useCreateDate";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
+import { v4 as uuid } from "uuid";
+
 import "./CreateNote.css";
 
-const CreateNote = () => {
+const CreateNote = ({ setNotes }) => {
     const [title, setTitle] = useState("");
     const [detail, setDetail] = useState("");
+    const date = useCreateDate();
+
     const titleRef = useRef();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (title || detail) {
-            console.log(title, detail);
+            const note = { id: uuid(), title, detail, date };
+
+            // add this note to notes array
+            setNotes((prevNotes) => [note, ...prevNotes]);
+            console.log(note);
         } else {
             console.warn("Chua nhap du lieu !");
         }
