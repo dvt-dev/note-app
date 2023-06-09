@@ -3,16 +3,15 @@ import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { BsPlusLg } from "react-icons/bs";
 import "./Notes.css";
-import dummyNotes from "../../dummy_notes";
 import NoteItem from "../../components/NoteItem/NoteItem";
 
-const Notes = () => {
+const Notes = ({ notes }) => {
     return (
         <section className="notes__wrapper">
             <div className="notes__container">
                 <header className="notes__header">
                     <div className="header__heading">
-                        <Link to={"/creat-note"} className="btn btn__add">
+                        <Link to={"/create-note"} className="btn btn__add">
                             <BsPlusLg />
                         </Link>
                         <h2 className="notes__heading">Notes</h2>
@@ -27,7 +26,7 @@ const Notes = () => {
                 </header>
 
                 <div className="notes__content">
-                    {dummyNotes.map((note) => (
+                    {notes.map((note) => (
                         <NoteItem key={note.id} note={note} />
                     ))}
                 </div>
