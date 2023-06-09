@@ -1,5 +1,5 @@
 .note {
-  background: var(--color-primary);
+  background-color: #aab3b4;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -16,6 +16,7 @@
 
 .note:nth-child(1) {
   background: #ffab91;
+  grid-row: 1/2;
 }
 
 .note:nth-child(2) {
@@ -46,7 +47,7 @@
 }
 
 .note:nth-child(8) {
-  background-color: #BFC9CA;
+  background-color: #aab3b4;
   grid-row: 5/7;
   grid-column: 2/3;
 }

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import useCreateDate from "../../components/CustomHooks/useCreateDate";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { v4 as uuid } from "uuid";
 
@@ -10,6 +10,7 @@ const CreateNote = ({ setNotes }) => {
     const [title, setTitle] = useState("");
     const [detail, setDetail] = useState("");
     const date = useCreateDate();
+    const navigate = useNavigate();
 
     const titleRef = useRef();
 
@@ -22,6 +23,9 @@ const CreateNote = ({ setNotes }) => {
             // add this note to notes array
             setNotes((prevNotes) => [note, ...prevNotes]);
             console.log(note);
+
+            // redirect to home page
+            navigate("/");
         } else {
             console.warn("Chua nhap du lieu !");
         }
