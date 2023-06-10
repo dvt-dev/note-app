@@ -27,8 +27,8 @@ const Notes = ({ notes }) => {
                 </header>
 
                 <div className="notes__content">
-                    {notes.map((note) => (
-                        <NoteItem key={note.id} note={note} />
+                    {notes.map((note, index) => (
+                        <NoteItem key={index} note={note} />
                     ))}
                 </div>
             </div>

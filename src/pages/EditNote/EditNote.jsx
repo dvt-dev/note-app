@@ -1,11 +1,58 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams, Navigate, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 import "./EditNote.css";
+import useCreateDate from "../../components/CustomHooks/useCreateDate";
 
-const EditNote = () => {
+const EditNote = ({ notes, setNotes }) => {
+    const { id } = useParams();
+    const [title, setTitle] = useState("");
+    const [detail, setDetails] = useState("");
+
+    const date = useCreateDate();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const note = notes.find((item) => item.id == id);
+        if (note) {
+            setTitle(note.title);
+            setDetails(note.detail);
+        }
+        console.log(note);
+    }, [id, notes]);
+
+    const handelForm = (e) => {
+        e.preventDefault();
+
+        if (title && detail) {
+            const newNote = notes.find((item) => item.id == id);
+            if (newNote) {
+                newNote.title = title;
+                newNote.detail = detail;
+                newNote.date = date;
+                setNotes(notes);
+            }
+
+            // const newNotes = [...notes,  ]
+        }
+
+        // redirect to home page
+        navigate("/");
+    };
+
+    const handleDelete = () => {
+        const newNotes = notes.filter((item) => item.id != id);
+        console.log("Prev notes: ", notes);
+        console.log("New notes: ", newNotes);
+        setNotes(newNotes);
+
+        navigate("/");
+    };
+
+    //
+
     return (
         <section className="edit-note__wrapper">
             <div className="edit-note__container">
@@ -13,15 +60,28 @@ const EditNote = () => {
                     <Link to={"/"} className="btn">
                         <IoIosArrowBack />
                     </Link>
-                    <button className="btn lg primary">Save</button>
-                    <button className="btn danger">
+                    <button className="btn lg primary" onClick={handelForm}>
+                        Save
+                    </button>
+                    <button className="btn danger" onClick={handleDelete}>
                         <RiDeleteBin6Line />
                     </button>
                 </header>
 
-                <form className="edit-note__form">
-                    <input type="text" placeholder="Title ..." autoFocus />
-                    <textarea rows="28" placeholder="Details ..."></textarea>
+                <form className="edit-note__form" onSubmit={handelForm}>
+                    <input
+                        type="text"
+                        placeholder="Title ..."
+                        autoFocus
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <textarea
+                        rows="28"
+                        placeholder="Details ..."
+                        value={detail}
+                        onChange={(e) => setDetails(e.target.value)}
+                    ></textarea>
                 </form>
             </div>
         </section>

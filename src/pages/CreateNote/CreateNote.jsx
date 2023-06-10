@@ -17,12 +17,12 @@ const CreateNote = ({ setNotes }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (title || detail) {
+        if (title && detail) {
             const note = { id: uuid(), title, detail, date };
 
             // add this note to notes array
             setNotes((prevNotes) => [note, ...prevNotes]);
-            console.log(note);
+            // console.log(note);
 
             // redirect to home page
             navigate("/");
