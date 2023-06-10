@@ -32,10 +32,15 @@ const EditNote = ({ notes, setNotes }) => {
                 newNote.title = title;
                 newNote.detail = detail;
                 newNote.date = date;
-                setNotes(notes);
             }
+            const newNotes = notes.map((item) => {
+                if (item.id == id) {
+                    item = newNote;
+                }
+                return item;
+            });
 
-            // const newNotes = [...notes,  ]
+            setNotes(newNotes);
         }
 
         // redirect to home page
@@ -72,12 +77,12 @@ const EditNote = ({ notes, setNotes }) => {
                     <input
                         type="text"
                         placeholder="Title ..."
-                        autoFocus
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
+                    <p className="note-date">{date}</p>
                     <textarea
-                        rows="28"
+                        rows={28}
                         placeholder="Details ..."
                         value={detail}
                         onChange={(e) => setDetails(e.target.value)}
