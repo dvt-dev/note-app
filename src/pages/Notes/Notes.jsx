@@ -51,7 +51,7 @@ const Notes = ({ notes }) => {
 
                 <div className="notes__content">
                     {filterNotes.length == 0 && (
-                        <p className="empty__notes">No notes found.</p>
+                        <p className="empty__notes">No notes.</p>
                     )}
                     {filterNotes.map((note, index) => (
                         <NoteItem key={index} note={note} />
