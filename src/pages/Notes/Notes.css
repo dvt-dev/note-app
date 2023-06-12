@@ -85,7 +85,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    margin-top: 0.8rem;
+    height: 120px;
     padding: 2rem 1rem 1rem;
     z-index: 100;
     background: var(--color-bg-black);
